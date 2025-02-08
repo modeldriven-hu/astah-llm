@@ -1,12 +1,18 @@
 package hu.modeldriven.astah.llmdocumenter.ui.usecase;
 
-import dev.langchain4j.model.github.GitHubModelsChatModel;
+import com.change_vision.jude.api.inf.exception.InvalidEditingException;
+import com.change_vision.jude.api.inf.model.IClass;
 import hu.modeldriven.astah.core.AstahRepresentation;
+import hu.modeldriven.astah.core.transaction.AstahTransaction;
+import hu.modeldriven.astah.core.transaction.TransactionFailedException;
+import hu.modeldriven.astah.llmdocumenter.ui.DocumentGenerationPrompt;
 import hu.modeldriven.astah.llmdocumenter.ui.event.DocumentFieldsRequestedEvent;
+import hu.modeldriven.astah.llmdocumenter.ui.event.ExceptionOccurredEvent;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
 
+import javax.swing.*;
 import java.util.List;
 
 public class DocumentFieldsUseCase implements EventHandler<DocumentFieldsRequestedEvent> {
@@ -21,27 +27,44 @@ public class DocumentFieldsUseCase implements EventHandler<DocumentFieldsRequest
 
     @Override
     public void handleEvent(DocumentFieldsRequestedEvent event) {
-        var prompt = """
-                I have a UML Class called %s. Generate a one sentence documentation for each field.
-                Return the result in a json object, where every field is a key, and the documentation is the value.
-                The fields will be listed in a format of name : type, separated by a comma. 
-                The fields are the following: %s
-                """.formatted(event.element().getName(), fieldList(event));
 
-        var model = GitHubModelsChatModel.builder()
-                .gitHubToken(System.getenv("ASTAH_GITHUB_TOKEN"))
-                .modelName("gpt-4o-mini")
-                .build();
+        try {
+            var prompt = new DocumentGenerationPrompt(
+                    event.element().getName(),
+                    attributesAsString(event.element()));
 
-        var response = model.chat(prompt);
+            var documentation = prompt.response();
 
-        System.out.println(response);
+            AstahTransaction transaction = new AstahTransaction();
+
+            transaction.execute(() -> {
+                for (var attribute : event.element().getAttributes()) {
+
+                    if (documentation.containsKey(attribute.getName())) {
+                        try {
+                            attribute.setDefinition(documentation.get(attribute.getName()));
+                        } catch (InvalidEditingException e) {
+                            eventBus.publish(new ExceptionOccurredEvent(e));
+                            return;
+                        }
+                    }
+
+                }
+            });
+
+            SwingUtilities.invokeLater(() -> {
+                JOptionPane.showMessageDialog(null, "Documentation generated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            });
+
+        } catch (TransactionFailedException e){
+            eventBus.publish(new ExceptionOccurredEvent(e));
+        }
     }
 
-    private String fieldList(DocumentFieldsRequestedEvent event) {
+    private String attributesAsString(IClass element) {
         var result = new StringBuilder();
 
-        for (var attribute : event.element().getAttributes()){
+        for (var attribute : element.getAttributes()){
             result.append(attribute.getName()).append(" : ").append(attribute.getType().getName()).append(", ");
         }
 
