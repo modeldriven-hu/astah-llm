@@ -239,5 +239,11 @@ public class AstahRepresentation {
         }
     }
 
-
+    public boolean hasProject() {
+        try {
+            return AstahAPI.getAstahAPI().getProjectAccessor().hasProject();
+        } catch (ClassNotFoundException e){
+            return false;
+        }
+    }
 }
