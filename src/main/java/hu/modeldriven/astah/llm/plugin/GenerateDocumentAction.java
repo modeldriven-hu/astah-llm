@@ -1,10 +1,13 @@
 package hu.modeldriven.astah.llm.plugin;
 
 
+import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
 import hu.modeldriven.astah.core.AstahRepresentation;
-import hu.modeldriven.astah.llm.ui.DocumentGeneratorDialog;
+import hu.modeldriven.astah.llm.ui.event.DocumentFieldsRequestedEvent;
+import hu.modeldriven.astah.llm.ui.usecase.DisplayExceptionUseCase;
+import hu.modeldriven.astah.llm.ui.usecase.DocumentFieldsUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
@@ -35,9 +38,14 @@ public class GenerateDocumentAction implements IPluginActionDelegate {
                 return null;
             }
 
-            var eventBus = new EventBus();
-            var dialog = new DocumentGeneratorDialog(eventBus, astah);
-            dialog.setVisible(true);
+            if (astah.selectedNodes().getFirst().getModel() instanceof IClass namedElement) {
+                var eventBus = new EventBus();
+                eventBus.subscribe(new DocumentFieldsUseCase(eventBus, astah));
+                eventBus.subscribe(new DisplayExceptionUseCase());
+                eventBus.publish(new DocumentFieldsRequestedEvent(namedElement));
+            } else {
+                JOptionPane.showMessageDialog(window.getParent(), "Selected element is not a class", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(window.getParent(), "Unexpected error has occurred.", "Alert", JOptionPane.ERROR_MESSAGE);
