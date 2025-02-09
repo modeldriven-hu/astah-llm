@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.llmdocumenter.ui.event;
+package hu.modeldriven.astah.llm.ui.event;
 
 import com.change_vision.jude.api.inf.model.IClass;
 import hu.modeldriven.core.eventbus.Event;

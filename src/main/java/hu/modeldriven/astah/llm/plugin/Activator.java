@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.llmdocumenter.plugin;
+package hu.modeldriven.astah.llm.plugin;
 
 
 import org.osgi.framework.BundleActivator;

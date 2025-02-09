@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.llmdocumenter.ui.prompt;
+package hu.modeldriven.astah.llm.ui.prompt;
 
 import dev.langchain4j.model.github.GitHubModelsChatModel;
 

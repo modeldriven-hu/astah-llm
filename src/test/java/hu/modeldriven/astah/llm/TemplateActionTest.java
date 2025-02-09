@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.llmdocumenter;
+package hu.modeldriven.astah.llm;
 
 import org.junit.jupiter.api.Test;
 

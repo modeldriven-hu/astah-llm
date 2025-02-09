@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.llmdocumenter.ui.event;
+package hu.modeldriven.astah.llm.ui.event;
 
 import hu.modeldriven.core.eventbus.Event;
 

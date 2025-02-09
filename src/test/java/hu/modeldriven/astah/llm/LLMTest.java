@@ -1,6 +1,6 @@
-package hu.modeldriven.astah.llmdocumenter;
+package hu.modeldriven.astah.llm;
 
-import hu.modeldriven.astah.llmdocumenter.ui.prompt.DocumentGenerationPrompt;
+import hu.modeldriven.astah.llm.ui.prompt.DocumentGenerationPrompt;
 import org.junit.Assert;
 import org.junit.Test;
 

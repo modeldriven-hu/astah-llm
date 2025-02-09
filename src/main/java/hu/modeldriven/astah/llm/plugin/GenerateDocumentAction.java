@@ -1,10 +1,10 @@
-package hu.modeldriven.astah.llmdocumenter.plugin;
+package hu.modeldriven.astah.llm.plugin;
 
 
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
 import hu.modeldriven.astah.core.AstahRepresentation;
-import hu.modeldriven.astah.llmdocumenter.ui.DocumentGeneratorDialog;
+import hu.modeldriven.astah.llm.ui.DocumentGeneratorDialog;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;

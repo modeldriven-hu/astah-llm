@@ -1,6 +1,6 @@
-package hu.modeldriven.astah.llmdocumenter.ui.usecase;
+package hu.modeldriven.astah.llm.ui.usecase;
 
-import hu.modeldriven.astah.llmdocumenter.ui.event.ExceptionOccurredEvent;
+import hu.modeldriven.astah.llm.ui.event.ExceptionOccurredEvent;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventHandler;
 

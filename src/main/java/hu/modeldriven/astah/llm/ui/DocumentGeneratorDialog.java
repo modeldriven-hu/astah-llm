@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.llmdocumenter.ui;
+package hu.modeldriven.astah.llm.ui;
 
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.core.eventbus.EventBus;

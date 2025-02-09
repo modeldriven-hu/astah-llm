@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<properties>
-		<bundle.symbolicName>hu.modeldriven.astah-llm-documenter</bundle.symbolicName>
-		<bundle.namespace>hu.modeldriven.astah.llmdocumenter</bundle.namespace>
+		<bundle.symbolicName>hu.modeldriven.astah-llm</bundle.symbolicName>
+		<bundle.namespace>hu.modeldriven.astah.llm</bundle.namespace>
 		<plugin.install>true</plugin.install>
 		<astah.version>1.1</astah.version>
 		<astah.edition>sysml</astah.edition>
@@ -12,11 +12,11 @@
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.modeldriven</groupId>
-	<artifactId>astah-llm-documenter</artifactId>
+	<artifactId>astah-llm</artifactId>
 	<version>1.7.3</version>
 	<packaging>jar</packaging>
-	<name>Astah LLM Documenter</name>
-	<description>LLM based documenter</description>
+	<name>Astah LLM</name>
+	<description>Bringing LLM Capabilities to Astah</description>
 	<reporting>
 		<plugins>
 			<plugin>

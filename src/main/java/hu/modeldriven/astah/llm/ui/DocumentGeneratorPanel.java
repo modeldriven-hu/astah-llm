@@ -1,9 +1,9 @@
-package hu.modeldriven.astah.llmdocumenter.ui;
+package hu.modeldriven.astah.llm.ui;
 
 import com.change_vision.jude.api.inf.model.IClass;
 import hu.modeldriven.astah.core.AstahRepresentation;
-import hu.modeldriven.astah.llmdocumenter.ui.event.DocumentFieldsRequestedEvent;
-import hu.modeldriven.astah.llmdocumenter.ui.usecase.DocumentFieldsUseCase;
+import hu.modeldriven.astah.llm.ui.event.DocumentFieldsRequestedEvent;
+import hu.modeldriven.astah.llm.ui.usecase.DocumentFieldsUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;

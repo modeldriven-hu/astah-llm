@@ -1,13 +1,13 @@
-package hu.modeldriven.astah.llmdocumenter.ui.usecase;
+package hu.modeldriven.astah.llm.ui.usecase;
 
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.model.IClass;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.core.transaction.AstahTransaction;
 import hu.modeldriven.astah.core.transaction.TransactionFailedException;
-import hu.modeldriven.astah.llmdocumenter.ui.event.DocumentFieldsRequestedEvent;
-import hu.modeldriven.astah.llmdocumenter.ui.event.ExceptionOccurredEvent;
-import hu.modeldriven.astah.llmdocumenter.ui.prompt.DocumentGenerationPrompt;
+import hu.modeldriven.astah.llm.ui.event.DocumentFieldsRequestedEvent;
+import hu.modeldriven.astah.llm.ui.event.ExceptionOccurredEvent;
+import hu.modeldriven.astah.llm.ui.prompt.DocumentGenerationPrompt;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
