@@ -10,26 +10,26 @@ public class DocumentGenerationPrompt {
     private final String className;
     private final String fields;
 
-    public DocumentGenerationPrompt(String className, String fields){
+    public DocumentGenerationPrompt(String className, String fields) {
         this.className = className;
         this.fields = fields;
     }
 
-    public Map<String, String> response(){
+    public Map<String, String> response() {
         var prompt = """
-            I have a UML class named "%s".
-            For each field in this class, generate a simple one-sentence documentation. 
-    
-            Return the result in standard Java properties file format, where:
-                - Each line is a key-value pair.
-                - The key is the field name.
-                - The value is the generated documentation.
-
-            Do not include anything else in the output—only the key-value pairs.
-
-            The fields are listed in the following format: name : type, separated by commas.
-            Fields: %s
-        """.formatted(className, fields);
+                    I have a UML class named "%s".
+                    For each field in this class, generate a simple one-sentence documentation. 
+                
+                    Return the result in standard Java properties file format, where:
+                        - Each line is a key-value pair.
+                        - The key is the field name.
+                        - The value is the generated documentation.
+                
+                    Do not include anything else in the output—only the key-value pairs.
+                
+                    The fields are listed in the following format: name : type, separated by commas.
+                    Fields: %s
+                """.formatted(className, fields);
 
         var model = GitHubModelsChatModel.builder()
                 .gitHubToken(System.getenv("ASTAH_GITHUB_TOKEN"))

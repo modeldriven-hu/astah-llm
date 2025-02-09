@@ -21,7 +21,7 @@ public class DocumentGeneratorPanel extends JPanel {
         initPanel();
     }
 
-    private void initUseCases(){
+    private void initUseCases() {
         this.eventBus.subscribe(new DocumentFieldsUseCase(eventBus, astah));
     }
 
@@ -34,7 +34,7 @@ public class DocumentGeneratorPanel extends JPanel {
 
     private void generateDocumentation() {
         var presentationNode = this.astah.selectedNodes().getFirst();
-        if (presentationNode.getModel() instanceof IClass namedElement){
+        if (presentationNode.getModel() instanceof IClass namedElement) {
             this.eventBus.publish(new DocumentFieldsRequestedEvent(namedElement));
         } else {
             JOptionPane.showMessageDialog(this, "Selected element is not a class", "Warning", JOptionPane.WARNING_MESSAGE);

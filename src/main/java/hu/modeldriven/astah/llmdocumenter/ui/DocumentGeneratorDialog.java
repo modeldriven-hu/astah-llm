@@ -17,7 +17,7 @@ public class DocumentGeneratorDialog extends JDialog {
         initDialog();
     }
 
-    private void initDialog(){
+    private void initDialog() {
         var panel = new DocumentGeneratorPanel(eventBus, astah);
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add(panel, BorderLayout.CENTER);

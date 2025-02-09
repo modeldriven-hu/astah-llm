@@ -5,9 +5,9 @@ import com.change_vision.jude.api.inf.model.IClass;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.core.transaction.AstahTransaction;
 import hu.modeldriven.astah.core.transaction.TransactionFailedException;
-import hu.modeldriven.astah.llmdocumenter.ui.prompt.DocumentGenerationPrompt;
 import hu.modeldriven.astah.llmdocumenter.ui.event.DocumentFieldsRequestedEvent;
 import hu.modeldriven.astah.llmdocumenter.ui.event.ExceptionOccurredEvent;
+import hu.modeldriven.astah.llmdocumenter.ui.prompt.DocumentGenerationPrompt;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
@@ -61,7 +61,7 @@ public class DocumentFieldsUseCase implements EventHandler<DocumentFieldsRequest
                 JOptionPane.showMessageDialog(null, "Documentation generated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             });
 
-        } catch (TransactionFailedException e){
+        } catch (TransactionFailedException e) {
             eventBus.publish(new ExceptionOccurredEvent(e));
         }
     }
@@ -69,7 +69,7 @@ public class DocumentFieldsUseCase implements EventHandler<DocumentFieldsRequest
     private String attributesAsString(IClass element) {
         var result = new StringBuilder();
 
-        for (var attribute : element.getAttributes()){
+        for (var attribute : element.getAttributes()) {
             result.append(attribute.getName()).append(" : ").append(attribute.getType().getName()).append(", ");
         }
 
