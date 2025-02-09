@@ -5,7 +5,7 @@ import com.change_vision.jude.api.inf.model.IClass;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.core.transaction.AstahTransaction;
 import hu.modeldriven.astah.core.transaction.TransactionFailedException;
-import hu.modeldriven.astah.llmdocumenter.ui.DocumentGenerationPrompt;
+import hu.modeldriven.astah.llmdocumenter.ui.prompt.DocumentGenerationPrompt;
 import hu.modeldriven.astah.llmdocumenter.ui.event.DocumentFieldsRequestedEvent;
 import hu.modeldriven.astah.llmdocumenter.ui.event.ExceptionOccurredEvent;
 import hu.modeldriven.core.eventbus.Event;
@@ -14,6 +14,7 @@ import hu.modeldriven.core.eventbus.EventHandler;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.Objects;
 
 public class DocumentFieldsUseCase implements EventHandler<DocumentFieldsRequestedEvent> {
 
@@ -39,6 +40,10 @@ public class DocumentFieldsUseCase implements EventHandler<DocumentFieldsRequest
 
             transaction.execute(() -> {
                 for (var attribute : event.element().getAttributes()) {
+
+                    if (!Objects.isNull(attribute.getDefinition()) && !attribute.getDefinition().isEmpty()) {
+                        continue;
+                    }
 
                     if (documentation.containsKey(attribute.getName())) {
                         try {
